@@ -75,7 +75,7 @@ For example: [Mapstruct](https://mapstruct.org/), [Modelmapper](http://modelmapp
 
 ## Solution:
 
-The finished sample application can be found in the [__solution__](./news-management/solution/news-management.jar) package at the root of the project, which can be run with the following command:
+The finished sample application can be found in the [__solution__](./solution/news-management.jar) package at the root of the project, which can be run with the following command:
 ``` java
    java -jar news-management.jar
 ```
