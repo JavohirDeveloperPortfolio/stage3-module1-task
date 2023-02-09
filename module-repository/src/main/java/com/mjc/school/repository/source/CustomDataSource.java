@@ -18,16 +18,16 @@ public class CustomDataSource {
     }
 
     public static CustomDataSource getInstance(){
-        CustomDataSource result = instance;
-        if (result == null) {
-            synchronized (CustomDataSource.class) {
-                result = instance;
-                if (result == null) {
+//        CustomDataSource result = instance;
+//        if (result == null) {
+//            synchronized (CustomDataSource.class) {
+//                result = instance;
+                if (instance == null) {
                     instance = new CustomDataSource();
                 }
-            }
-        }
-        return result;
+//            }
+//        }
+        return instance;
     }
 
     public Map<Long, Author> getAuthorMap(){

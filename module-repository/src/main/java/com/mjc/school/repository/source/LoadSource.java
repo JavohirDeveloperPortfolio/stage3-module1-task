@@ -8,12 +8,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LoadSource {
 
-    private static final String AUTHOR_FILE_PATH = "resources/author.txt";
-    private static final String NEWS_FILE_PATH = "resources/news.txt";
-    private static final String CONTENT_FILE_PATH = "resources/content.txt";
+    private static final String AUTHOR_FILE_PATH = Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("author.txt")).getPath();;
+    private static final String NEWS_FILE_PATH = Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("title.txt")).getPath();
+    private static final String CONTENT_FILE_PATH = Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("content.txt")).getPath();
 
     private static final List<String> authorList = new ArrayList<>();
     private static final List<String> newsList = new ArrayList<>();
@@ -34,6 +35,9 @@ public class LoadSource {
     }
 
     public static void loadData(CustomDataSource customDataSource) {
+
+        System.out.println(AUTHOR_FILE_PATH);
+
         loader(authorList, AUTHOR_FILE_PATH);
         loader(newsList, NEWS_FILE_PATH);
         loader(contentList, CONTENT_FILE_PATH);
