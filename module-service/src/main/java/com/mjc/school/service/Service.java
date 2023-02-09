@@ -1,8 +1,8 @@
-package com.mjc.school.repository;
+package com.mjc.school.service;
 
 import java.util.List;
 
-public interface RepositoryInterface<T> {
+public interface Service<T> {
     T create(T t);
     T update(T t);
     T getById(Long id);

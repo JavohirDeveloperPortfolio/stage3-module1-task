@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CustomDataSource {
     private final Map<Long, Author> authorMap;
     private final Map<Long, News> newsMap;
-    private static CustomDataSource instance;
+    private static volatile CustomDataSource instance;
 
     private CustomDataSource(){
         authorMap = new ConcurrentHashMap<>();
@@ -18,10 +18,16 @@ public class CustomDataSource {
     }
 
     public static CustomDataSource getInstance(){
-        if (instance == null){
-            instance = new CustomDataSource();
+        CustomDataSource result = instance;
+        if (result == null) {
+            synchronized (CustomDataSource.class) {
+                result = instance;
+                if (result == null) {
+                    instance = new CustomDataSource();
+                }
+            }
         }
-        return instance;
+        return result;
     }
 
     public Map<Long, Author> getAuthorMap(){
