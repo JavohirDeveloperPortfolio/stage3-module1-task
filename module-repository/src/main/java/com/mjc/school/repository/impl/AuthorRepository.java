@@ -1,12 +1,12 @@
 package com.mjc.school.repository.impl;
 
 import com.mjc.school.repository.Repository;
-import com.mjc.school.repository.entity.Author;
+import com.mjc.school.repository.entity.AuthorModel;
 import com.mjc.school.repository.source.CustomDataSource;
 
 import java.util.List;
 
-public class AuthorRepository implements Repository<Author> {
+public class AuthorRepository implements Repository<AuthorModel> {
     private final CustomDataSource dataSource;
 
     public AuthorRepository() {
@@ -14,27 +14,27 @@ public class AuthorRepository implements Repository<Author> {
     }
 
     @Override
-    public Author create(Author author) {
-        return dataSource.getAuthorMap().putIfAbsent(author.getId(), author) == null ? author : null;
+    public AuthorModel create(AuthorModel authorModel) {
+        return dataSource.getAuthorMap().putIfAbsent(authorModel.getId(), authorModel) == null ? authorModel : null;
     }
 
     @Override
-    public Author update(Author author) {
-        return dataSource.getAuthorMap().computeIfPresent(author.getId(), (aLong, author1) -> author);
+    public AuthorModel update(AuthorModel authorModel) {
+        return dataSource.getAuthorMap().computeIfPresent(authorModel.getId(), (aLong, authorModel1) -> authorModel);
     }
 
     @Override
-    public Author readById(Long id) {
+    public AuthorModel readById(Long id) {
         return dataSource.getAuthorMap().get(id);
     }
 
     @Override
-    public List<Author> readAll() {
+    public List<AuthorModel> readAll() {
         return List.copyOf(dataSource.getAuthorMap().values());
     }
 
     @Override
     public Boolean delete(Long id) {
-        return (dataSource.getAuthorMap().remove(id) != null)?true:false;
+        return dataSource.getAuthorMap().remove(id) != null;
     }
 }

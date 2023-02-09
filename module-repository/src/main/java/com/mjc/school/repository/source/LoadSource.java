@@ -1,7 +1,7 @@
 package com.mjc.school.repository.source;
 
-import com.mjc.school.repository.entity.Author;
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.entity.AuthorModel;
+import com.mjc.school.repository.entity.NewsModel;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -36,17 +36,17 @@ public class LoadSource {
 
     public static void loadData(CustomDataSource customDataSource) {
 
-        System.out.println(AUTHOR_FILE_PATH);
+//        System.out.println(AUTHOR_FILE_PATH);
 
         loader(authorList, AUTHOR_FILE_PATH);
         loader(newsList, NEWS_FILE_PATH);
         loader(contentList, CONTENT_FILE_PATH);
 
         for (int i = 0; i < 20; i++) {
-            Author author = new Author(authorList.get(i));
-            customDataSource.getAuthorMap().put(author.getId(), author);
-            News news = new News(newsList.get(i),contentList.get(i),author.getId());
-            customDataSource.getNewsMap().put(news.getId(), news);
+            AuthorModel authorModel = new AuthorModel(authorList.get(i));
+            customDataSource.getAuthorMap().put(authorModel.getId(), authorModel);
+            NewsModel newsModel = new NewsModel(newsList.get(i),contentList.get(i), authorModel.getId());
+            customDataSource.getNewsMap().put(newsModel.getId(), newsModel);
         }
     }
 }

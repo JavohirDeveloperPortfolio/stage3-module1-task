@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Getter
 @Setter
-public class News {
+public class NewsModel {
 
     private static AtomicLong nextId = new AtomicLong();
 
@@ -19,11 +19,11 @@ public class News {
     private LocalDateTime lastUpdateDate;
     private Long authorId;
 
-    public News(){
+    public NewsModel(){
         this.id = nextId.getAndIncrement();
     }
 
-    public News(String title, String content, Long authorId){
+    public NewsModel(String title, String content, Long authorId){
         this.id = nextId.getAndIncrement();
         this.title = title;
         this.content = content;

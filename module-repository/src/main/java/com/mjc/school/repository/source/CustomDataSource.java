@@ -1,14 +1,14 @@
 package com.mjc.school.repository.source;
 
-import com.mjc.school.repository.entity.Author;
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.entity.AuthorModel;
+import com.mjc.school.repository.entity.NewsModel;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class CustomDataSource {
-    private final Map<Long, Author> authorMap;
-    private final Map<Long, News> newsMap;
+    private final Map<Long, AuthorModel> authorMap;
+    private final Map<Long, NewsModel> newsMap;
     private static volatile CustomDataSource instance;
 
     private CustomDataSource(){
@@ -30,11 +30,11 @@ public class CustomDataSource {
         return instance;
     }
 
-    public Map<Long, Author> getAuthorMap(){
+    public Map<Long, AuthorModel> getAuthorMap(){
         return authorMap;
     }
 
-    public Map<Long, News> getNewsMap(){
+    public Map<Long, NewsModel> getNewsMap(){
         return newsMap;
     }
 }

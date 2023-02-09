@@ -1,7 +1,7 @@
 package com.mjc.school.service.impl;
 
 import com.mjc.school.repository.Repository;
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.repository.impl.NewsRepository;
 import com.mjc.school.service.NewsMapper;
 import com.mjc.school.service.Service;
@@ -14,7 +14,7 @@ import com.mjc.school.service.validation.NewsValidation;
 import java.util.List;
 
 public class NewsService implements Service<NewsDto> {
-    private final Repository<News> newsRepository;
+    private final Repository<NewsModel> newsRepository;
     private final NewsValidation newsValidation;
 
     public NewsService(){
@@ -28,14 +28,14 @@ public class NewsService implements Service<NewsDto> {
         if (errorNotification.hasErrors()){
             throw new InvalidDataException(errorNotification.getErrorList().toString());
         }
-        News news = newsRepository.create(NewsMapper.newsMapper.news(newsDto));
-        return NewsMapper.newsMapper.newsDto(news);
+        NewsModel newsModel = newsRepository.create(NewsMapper.newsMapper.news(newsDto));
+        return NewsMapper.newsMapper.newsDto(newsModel);
     }
 
     @Override
     public NewsDto update(NewsDto newsDto) {
-        News news = newsRepository.readById(newsDto.getId());
-        if (news == null){
+        NewsModel newsModel = newsRepository.readById(newsDto.getId());
+        if (newsModel == null){
             throw new NoSuchEntityException("This entity does not exist");
         }
 
@@ -43,13 +43,13 @@ public class NewsService implements Service<NewsDto> {
         if (errorNotification.hasErrors()){
             throw new InvalidDataException(errorNotification.getErrorList().toString());
         }
-        newsDto.setCreateDate(news.getCreateDate());
+        newsDto.setCreateDate(newsModel.getCreateDate());
         return NewsMapper.newsMapper.newsDto(newsRepository.update(NewsMapper.newsMapper.news(newsDto)));
     }
 
     @Override
     public NewsDto readById(Long id) {
-        News byId = newsRepository.readById(id);
+        NewsModel byId = newsRepository.readById(id);
         if (byId == null){
             throw new NoSuchEntityException("This entity does not exist");
         }

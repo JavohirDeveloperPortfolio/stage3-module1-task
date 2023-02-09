@@ -7,17 +7,17 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Getter
 @Setter
-public class Author {
+public class AuthorModel {
     private static AtomicLong nextId = new AtomicLong();
 
     private Long id;
     private String name;
 
-    public Author(){
+    public AuthorModel(){
         this.id = nextId.getAndIncrement();
     }
 
-    public Author(String name){
+    public AuthorModel(String name){
         this.id = nextId.getAndIncrement();
         this.name = name;
     }
