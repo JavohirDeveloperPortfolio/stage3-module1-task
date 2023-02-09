@@ -34,7 +34,7 @@ public class NewsService implements Service<NewsDto> {
 
     @Override
     public NewsDto update(NewsDto newsDto) {
-        News news = newsRepository.getById(newsDto.getId());
+        News news = newsRepository.readById(newsDto.getId());
         if (news == null){
             throw new NoSuchEntityException("This entity does not exist");
         }
@@ -48,8 +48,8 @@ public class NewsService implements Service<NewsDto> {
     }
 
     @Override
-    public NewsDto getById(Long id) {
-        News byId = newsRepository.getById(id);
+    public NewsDto readById(Long id) {
+        News byId = newsRepository.readById(id);
         if (byId == null){
             throw new NoSuchEntityException("This entity does not exist");
         }
@@ -57,16 +57,15 @@ public class NewsService implements Service<NewsDto> {
     }
 
     @Override
-    public List<NewsDto> getAll() {
-        return NewsMapper.newsMapper.toListDto(newsRepository.getAll());
+    public List<NewsDto> readAll() {
+        return NewsMapper.newsMapper.toListDto(newsRepository.readAll());
     }
 
     @Override
-    public NewsDto delete(Long id) {
-        News delete = newsRepository.delete(id);
-        if (delete == null){
+    public Boolean delete(Long id) {
+        if (!newsRepository.delete(id)){
             throw new NoSuchEntityException("This entity does not exist");
         }
-        return NewsMapper.newsMapper.newsDto(delete);
+        return true;
     }
 }

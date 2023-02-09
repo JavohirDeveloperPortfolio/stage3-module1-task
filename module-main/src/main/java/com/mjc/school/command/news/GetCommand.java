@@ -10,6 +10,6 @@ public class GetCommand implements Command<NewsController> {
         MessageHelper.printMessage("Input entity id:");
         long input = MessageHelper.readId();
 
-        MessageHelper.printMessage(controller.getById(input).toString());
+        MessageHelper.printMessage(controller.readById(input).toString());
     }
 }

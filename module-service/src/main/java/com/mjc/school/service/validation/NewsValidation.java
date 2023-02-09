@@ -27,7 +27,7 @@ public class NewsValidation {
         if (content.length() < 5 || content.length() > 255)
             errorNotification.addError(VALIDATION_CONTENT + " Content length is " + content.length() + ".");
 
-        if (authorRepository.getById(authorId) == null) {
+        if (authorRepository.readById(authorId) == null) {
             errorNotification.addError(String.format(VALIDATION_AUTHOR, authorId));
         }
 

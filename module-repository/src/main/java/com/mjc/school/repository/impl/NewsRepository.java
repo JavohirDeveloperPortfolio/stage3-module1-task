@@ -24,17 +24,17 @@ public class NewsRepository implements Repository<News> {
     }
 
     @Override
-    public News getById(Long id) {
+    public News readById(Long id) {
         return dataSource.getNewsMap().get(id);
     }
 
     @Override
-    public List<News> getAll() {
+    public List<News> readAll() {
         return List.copyOf(dataSource.getNewsMap().values());
     }
 
     @Override
-    public News delete(Long id) {
-        return dataSource.getNewsMap().remove(id);
+    public Boolean delete(Long id) {
+        return (dataSource.getNewsMap().remove(id) != null)?true:false;
     }
 }

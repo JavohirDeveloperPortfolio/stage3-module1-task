@@ -24,17 +24,17 @@ public class AuthorRepository implements Repository<Author> {
     }
 
     @Override
-    public Author getById(Long id) {
+    public Author readById(Long id) {
         return dataSource.getAuthorMap().get(id);
     }
 
     @Override
-    public List<Author> getAll() {
+    public List<Author> readAll() {
         return List.copyOf(dataSource.getAuthorMap().values());
     }
 
     @Override
-    public Author delete(Long id) {
-        return dataSource.getAuthorMap().remove(id);
+    public Boolean delete(Long id) {
+        return (dataSource.getAuthorMap().remove(id) != null)?true:false;
     }
 }

@@ -23,17 +23,17 @@ public class NewsController implements Controller<NewsDto> {
     }
 
     @Override
-    public NewsDto getById(Long id) {
-        return newsService.getById(id);
+    public NewsDto readById(Long id) {
+        return newsService.readById(id);
     }
 
     @Override
-    public List<NewsDto> getAll() {
-        return newsService.getAll();
+    public List<NewsDto> readAll() {
+        return newsService.readAll();
     }
 
     @Override
-    public NewsDto delete(Long id) {
+    public Boolean delete(Long id) {
         return newsService.delete(id);
     }
 }
