@@ -5,7 +5,7 @@ plugins {
 jar.enabled = true;
 
 group 'com.mjc.school'
-version '1.0'
+version 'unspecified'
 
 repositories {
     mavenCentral()
